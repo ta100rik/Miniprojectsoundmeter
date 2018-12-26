@@ -67,12 +67,12 @@ if($_SESSION['username']){
 					</ul>
 					<div class="tab-content">
 						<div id="Maximum" class="tab-pane fade in active form">
-							<form>
-								<div class="row ">
+							
+								<div class="row">
 									<label class="col-md-3">Maximale waarde:</label>
 									<div class="input-group col-md-3">
 									<span class="input-group-addon">%</span>
-									<input id="max" type="text" value="#6b678a" class="form-control" name="max" placeholder="maximale">
+									<input id="max" type="text"  class="form-control" name="max" placeholder="maximale">
 								</div>
 								</div>
 								
@@ -80,39 +80,39 @@ if($_SESSION['username']){
 								<div class="input-group">
 									<input id="color-max" type="text" name="color-max" >
 								</div>
-							</form>
+
+								<br>
+								<button class="btn btn-primary" onclick="updatelimit('max')">save</button>
+							
 						</div>
-						<div id="Middel" class="tab-pane fade">
-														<form>
-								<div class="row ">
-									<label class="col-md-3">Maximale waarde:</label>
+						<div id="Middel" class="tab-pane fade form">
+								<div class="row">
+									<label class="col-md-3">Colorpicker:</label>
 									<div class="input-group col-md-3">
-									<span class="input-group-addon">%</span>
-									<input id="max" type="text" value="#6b678a" class="form-control" name="max" placeholder="maximale">
+										<input id="color-mid" type="text" name="color-mid" >
+									</div>
 								</div>
-								</div>
-								
-								<label>Colorpicker:</label>
-								<div class="input-group">
-									<input id="color-max" type="text" name="color-max" >
-								</div>
-							</form>
+								<br>
+								<button class="btn btn-primary" onclick="updatelimit('middel')">save</button>
+							
 						</div>
-						<div id="Minimum" class="tab-pane fade">
-														<form>
+						<div id="Minimum" class="tab-pane fade form">
+														
 								<div class="row ">
-									<label class="col-md-3">Maximale waarde:</label>
+									<label class="col-md-3">Minimale waarde:</label>
 									<div class="input-group col-md-3">
 									<span class="input-group-addon">%</span>
-									<input id="max" type="text" value="#6b678a" class="form-control" name="max" placeholder="maximale">
+									<input id="min" type="text"  class="form-control" name="min" placeholder="Minimale">
 								</div>
 								</div>
 								
 								<label>Colorpicker:</label>
 								<div class="input-group">
-									<input id="color-max" type="text" name="color-max" >
+									<input id="color-min" type="text" name="color-min" >
 								</div>
-							</form>
+								<br>
+								<button class="btn btn-primary" onclick="updatelimit('min')">save</button>
+							
 						</div>
 					</div>
 					</div>
@@ -145,7 +145,7 @@ if($_SESSION['username']){
 								</div>
 
 						</div>
-						<div class="col-md-6"></div>
+						<div class="col-md-6"><img class="solidlight" style="margin-left:37.5%;width: 25%;margin-right:37.5%;" src="images/lightbulb.png"></div>
 					</div>
 				</div>
 				<div class="col-md-6 border"><img class="lightbulb" src="images/lightbulb.png"></div>
@@ -158,10 +158,44 @@ if($_SESSION['username']){
     picker.set('#000000');
     picker.on("change", function(color) {
         this.source.value = '#' + color;
-        console.log(color);
+        // console.log(color);
         $('.lightbulb').css('background-color',  '#' + color);
 
     });
+    var picker2 = new CP(document.querySelector('#color-min'));
+
+    picker2.set('#000000');
+    picker2.on("change", function(color) {
+        this.source.value = '#' + color;
+        // console.log(color);
+        $('.lightbulb').css('background-color',  '#' + color);
+
+    });  
+    var picker3 = new CP(document.querySelector('#color-mid'));
+
+    picker3.set('#000000');
+    picker3.on("change", function(color) {
+        this.source.value = '#' + color;
+        // console.log(color);
+        $('.lightbulb').css('background-color',  '#' + color);
+
+    });
+    function updatelimit(type){
+    	// console.log(type);
+    	value = '';
+    	color = '';
+    	if(type == 'max'){
+    		color = $('#color-max').val();
+    		value = $('#max').val();
+    	}else if(type == 'min'){
+    		color = $('#color-min').val();
+    		value = $('#min').val();
+    	}else if(type == 'middel'){
+    		color = $('#color-mid').val();
+    	}else{
+    		alert('no type');
+    	}
+    }
     </script>
 </html>
 <?php
