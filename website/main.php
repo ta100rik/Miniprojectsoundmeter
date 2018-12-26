@@ -117,7 +117,34 @@ if($_SESSION['username']){
 					</div>
 					</div>
 					<div class="row secondhalf">
-						<div class="col-md-6"><h5>Current state</h5></div>
+						<div class="col-md-6">
+							<h5>Current state</h5>
+								<div class="row">
+									<div class="col-md-6">
+										Minimale limiet:
+									</div>
+									<div class="col-md-6 limitsmall" >
+										
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										Middel limiet:
+									</div>
+									<div class="col-md-6 limitmiddel">
+										
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										Maximale limiet:
+									</div>
+									<div class="col-md-6 limitmaximale">
+										
+									</div>
+								</div>
+
+						</div>
 						<div class="col-md-6"></div>
 					</div>
 				</div>
