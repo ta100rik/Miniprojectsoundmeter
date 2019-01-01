@@ -1,0 +1,19 @@
+.container-fluid{
+	height: inherit;
+}
+.navbar{
+	margin-bottom:0px;
+}
+.form{
+	padding-top:20px;
+}
+.firsthalf{
+	margin-bottom: 40%;
+	/*background-color: yellow;*/
+}
+.secondhalf{
+	height: 20%;	
+	border-top: solid black 2px;
+	/*background-color:red;*/
+}
+
