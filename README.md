@@ -1,6 +1,6 @@
 # MiniprojectSoundmeter
 
-Miniproject Soundmesure
+MiniprojectSoundmeter
 
 ## Getting Started
 
