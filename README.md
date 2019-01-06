@@ -23,5 +23,5 @@ not yet implemented
 * **Zyad Osseyran** - [Ta100rik](https://github.com/ta100rik)
 * **Dylan Geels**
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/GeelsD/MiniprojectSoundmeter/contributors) who participated in this project.
 
