@@ -12,6 +12,7 @@ import socket
 
 #print(mydb)
 
+#mycursor = mydb.cursor()
 
 GPIO.setmode(GPIO.BOARD) # use board pin numbers
 # define pin #7 as input pin
@@ -36,4 +37,15 @@ while True:
                 data = conn.recv(1024)
                 if not data:
                     break
+                sensorid = 1
+                decibel = 1
+                #sql = "INSERT INTO Sensor_log (sensorid, decibel) VALUES (%s, %s)"
+                #val = (sensorid, decibel)
+                #mycursor.execute(sql, val)
+
+                #mydb.commit()
+
+                #mycursor.execute("""SELECT * FROM anooog1;""")
+                #print mycursor.fetchall()
+
                 conn.sendall(data)

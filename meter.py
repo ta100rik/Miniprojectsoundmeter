@@ -2,7 +2,19 @@ import time
 import RPi.GPIO as GPIO
 from qhue import Bridge
 import socket
+import smbus
 
+address = 0x48
+A0 = 0x40
+A1 = 0x41
+A2 = 0x42
+A3 = 0x43
+bus = smbus.SMBus(1)
+while True:
+	bus.write_byte(address,A0)
+	value = bus.read_byte(address)
+	print("AOUT:%1.3f  " %(value))
+	time.sleep(0.1)
 
 GPIO.setmode(GPIO.BOARD) # use board pin numbers
 # define pin #7 as input pin
