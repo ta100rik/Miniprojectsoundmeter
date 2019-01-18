@@ -60,10 +60,10 @@ if($_SESSION['username']){
 				<div class="col-md-6">
 					<div class="firsthalf">
 						
-					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#Maximum">Maximum</a></li>
-						<li><a data-toggle="tab" href="#Middel">Middel</a></li>
-						<li><a data-toggle="tab" href="#Minimum">Minimum</a></li>
+					<ul class="nav nav-tabs ">
+						<li class="active"><a class="tab-button" data-toggle="tab" id="#Maximum" href="#Maximum">Maximum</a></li>
+						<li><a class="tab-button" data-toggle="tab" id="#Middel" href="#Middel">Middel</a></li>
+						<li><a class="tab-button" data-toggle="tab" id="#Minimum" href="#Minimum">Minimum</a></li>
 					</ul>
 					<div class="tab-content">
 						<div id="Maximum" class="tab-pane fade in active form">
@@ -153,33 +153,7 @@ if($_SESSION['username']){
 		</div>
 	</body>
     <script>
-    var picker = new CP(document.querySelector('#color-max'));
 
-    picker.set('#000000');
-    picker.on("change", function(color) {
-        this.source.value = '#' + color;
-        // console.log(color);
-        $('.lightbulb').css('background-color',  '#' + color);
-
-    });
-    var picker2 = new CP(document.querySelector('#color-min'));
-
-    picker2.set('#000000');
-    picker2.on("change", function(color) {
-        this.source.value = '#' + color;
-        // console.log(color);
-        $('.lightbulb').css('background-color',  '#' + color);
-
-    });  
-    var picker3 = new CP(document.querySelector('#color-mid'));
-
-    picker3.set('#000000');
-    picker3.on("change", function(color) {
-        this.source.value = '#' + color;
-        // console.log(color);
-        $('.lightbulb').css('background-color',  '#' + color);
-
-    });
     
     </script>
 </html>

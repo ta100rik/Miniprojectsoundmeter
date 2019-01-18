@@ -19,19 +19,19 @@ switch ($cat) {
 	if($found){
 		var_dump($data);
 		if($type != 'mid'){
-		$sql = "UPDATE limits SET color = '" .$data['color']. "', limit_database = '".$data['limit_database']."' where id = '".$data['id']."'";
+		$sql = "UPDATE limits SET colorer = '" .$color. "', limit_database = '".$limit."' where id = '".$data['id']."'";
 		}else{
-		$sql = "UPDATE limits SET color = '" .$data['color']. "' where id = '".$data['id']."'";
+		$sql = "UPDATE limits SET colorer = '" .$color. "' where id = '".$data['id']."'";
 		}
 
 	}else{
 		if($type != 'mid'){
 			if(isset($color) && isset($type) && isset($limit)){
-				$sql = "INSERT INTO limits (color,Limit_type,limit_database) VALUES ('".$color."','" .$type."','".$limit."')";
+				$sql = "INSERT INTO limits (colorer,Limit_type,limit_database) VALUES ('".$color."','" .$type."','".$limit."')";
 			}
 		}else{			
 			if(isset($color) && isset($type)){
-				$sql = "INSERT INTO limits (color,Limit_type) VALUES ('".$color."','" .$type."')";
+				$sql = "INSERT INTO limits (colorer,Limit_type) VALUES ('".$color."','" .$type."')";
 			}
 		}
 	}
