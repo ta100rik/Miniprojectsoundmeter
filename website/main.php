@@ -20,7 +20,7 @@ if($_SESSION['username']){
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/color-picker.min.css">
 		<script type="text/javascript" src="js/color-picker.min.js"></script>
-		
+		<script type="text/javascript" src="js/script.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
@@ -72,7 +72,7 @@ if($_SESSION['username']){
 									<label class="col-md-3">Maximale waarde:</label>
 									<div class="input-group col-md-3">
 									<span class="input-group-addon">%</span>
-									<input id="max" type="text"  class="form-control" name="max" placeholder="maximale">
+									<input id="max" type="number"  class="form-control" name="max" placeholder="maximale">
 								</div>
 								</div>
 								
@@ -93,7 +93,7 @@ if($_SESSION['username']){
 									</div>
 								</div>
 								<br>
-								<button class="btn btn-primary" onclick="updatelimit('middel')">save</button>
+								<button class="btn btn-primary" onclick="updatelimit('mid')">save</button>
 							
 						</div>
 						<div id="Minimum" class="tab-pane fade form">
@@ -102,7 +102,7 @@ if($_SESSION['username']){
 									<label class="col-md-3">Minimale waarde:</label>
 									<div class="input-group col-md-3">
 									<span class="input-group-addon">%</span>
-									<input id="min" type="text"  class="form-control" name="min" placeholder="Minimale">
+									<input id="min" type="number"  class="form-control" name="min" placeholder="Minimale">
 								</div>
 								</div>
 								
@@ -180,22 +180,7 @@ if($_SESSION['username']){
         $('.lightbulb').css('background-color',  '#' + color);
 
     });
-    function updatelimit(type){
-    	// console.log(type);
-    	value = '';
-    	color = '';
-    	if(type == 'max'){
-    		color = $('#color-max').val();
-    		value = $('#max').val();
-    	}else if(type == 'min'){
-    		color = $('#color-min').val();
-    		value = $('#min').val();
-    	}else if(type == 'middel'){
-    		color = $('#color-mid').val();
-    	}else{
-    		alert('no type');
-    	}
-    }
+    
     </script>
 </html>
 <?php
