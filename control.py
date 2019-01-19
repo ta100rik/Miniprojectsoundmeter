@@ -4,15 +4,16 @@ from qhue import Bridge
 import mysql.connector
 import socket
 
-#mydb = mysql.connector.connect(
-#  host="localhost",
-#  user="yourusername",
-#  passwd="yourpassword"
-#)
+mydb = mysql.connector.connect(
+  host="db4free.net",
+  user="feedbacklamp",
+  passwd="feedbacklamp123",
+  database = "feedbacklamp"
+)
 
-#print(mydb)
+print(mydb)
 
-#mycursor = mydb.cursor()
+mycursor = mydb.cursor()
 
 GPIO.setmode(GPIO.BOARD) # use board pin numbers
 # define pin #7 as input pin
@@ -39,11 +40,11 @@ while True:
                     break
                 sensorid = 1
                 decibel = 1
-                #sql = "INSERT INTO Sensor_log (sensorid, decibel) VALUES (%s, %s)"
-                #val = (sensorid, decibel)
-                #mycursor.execute(sql, val)
+                sql = "INSERT INTO sensor_log (Geluidniveau, Decibel, Sensor_auto_id) VALUES (%s, %s, %s)"
+                val = ('1', data, '1')
+                mycursor.execute(sql, val)
 
-                #mydb.commit()
+                mydb.commit()
 
                 #mycursor.execute("""SELECT * FROM anooog1;""")
                 #print mycursor.fetchall()
