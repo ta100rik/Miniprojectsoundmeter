@@ -3,11 +3,14 @@ import RPi.GPIO as GPIO
 from qhue import Bridge
 import socket
 import smbus
+import json
 
 GPIO.setmode(GPIO.BOARD) # use board pin numbers
 # define pin #7 as input pin
 pin = 7
 GPIO.setup(pin, GPIO.IN)
+
+sensor = 1
 
 b = Bridge("192.168.1.30", 'e254339152304b714add57d14a8fdbb')
 groups = b.groups # as groups are handy, I will contorll all
@@ -46,11 +49,12 @@ while True:
 	value = bus.read_byte(address)
 	print(value)
 	print("AOUT:%1.3f  " %(value))
+	db = {'sensor' : sensor, 'value' : value}
+	dbjson = json.dumps(db).encode()
 	if value < 50:
 		with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 			s.connect((HOST, PORT))
-			db = str(value).encode()
-			s.sendall(db)
+			s.sendall(dbjson)
 			data = s.recv(1024)
 
 		print('Received', repr(data))

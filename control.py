@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 from qhue import Bridge
 import mysql.connector
 import socket
+import json
 
 mydb = mysql.connector.connect(
   host="db4free.net",
@@ -38,15 +39,26 @@ while True:
                 data = conn.recv(1024)
                 if not data:
                     break
-                sensorid = 1
-                decibel = 1
+                dbjson = json.loads(data.decode())
+                print(dbjson)
+                sensorid = dbjson.get("sensor")
+                decibel = dbjson.get("value")
                 sql = "INSERT INTO sensor_log (Geluidniveau, Decibel, Sensor_auto_id) VALUES (%s, %s, %s)"
-                val = ('1', data, '1')
+                val = (sensorid, decibel, sensorid)
                 mycursor.execute(sql, val)
 
                 mydb.commit()
 
-                #mycursor.execute("""SELECT * FROM anooog1;""")
-                #print mycursor.fetchall()
+                mycursor.execute("""SELECT * FROM limits;""")
+                limitdata = mycursor.fetchall()
+
+                print(limitdata)
+
+                mindata = limitdata[0][3]
+                maxdata = limitdata[1][3]
+                middata = limitdata[2][3]
+
+                for limit in limitdata:
+                    print(limit)
 
                 conn.sendall(data)
