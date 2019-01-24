@@ -4,6 +4,10 @@ from qhue import Bridge
 import socket
 import smbus
 import json
+import sys
+import numpy
+
+print(str(sys.argv))
 
 GPIO.setmode(GPIO.BOARD) # use board pin numbers
 # define pin #7 as input pin
@@ -44,19 +48,22 @@ A1 = 0x41
 A2 = 0x42
 A3 = 0x43
 bus = smbus.SMBus(1)
-while True:
-	bus.write_byte(address,A0)
-	value = bus.read_byte(address)
-	print(value)
-	print("AOUT:%1.3f  " %(value))
-	db = {'sensor' : sensor, 'value' : value}
-	dbjson = json.dumps(db).encode()
-	if value < 50:
-		with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-			s.connect((HOST, PORT))
-			s.sendall(dbjson)
-			data = s.recv(1024)
 
-		print('Received', repr(data))
 
-	time.sleep(0.1)
+bus.write_byte(address,A0)
+#value = bus.read_byte(address)
+commandline = int(sys.argv[1])
+print(commandline)
+#print("AOUT:%1.3f  " %(value))
+value = 20 * (numpy.log(commandline) / numpy.log(10))
+print(value)
+db = {'sensor' : sensor, 'value' : value}
+dbjson = json.dumps(db).encode()
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+	s.connect((HOST, PORT))
+	s.sendall(dbjson)
+	data = s.recv(1024)
+
+print('Received', repr(data))
+
+time.sleep(0.1)
