@@ -21,12 +21,16 @@ GPIO.setmode(GPIO.BOARD) # use board pin numbers
 pin = 7
 GPIO.setup(pin, GPIO.IN)
 
-b = Bridge("192.168.1.30", 'e254339152304b714add57d14a8fdbb')
+b = Bridge("192.168.42.5", 'kln6lqpHrW4kkkUEA-WRy5BX2dVbKLzOEm5DYrsB')
 groups = b.groups	# as groups are handy, I will contorll all
 
 
-HOST = '192.168.0.23'  # Standard loopback interface address (localhost)
+HOST = '192.168.42.14'  # Standard loopback interface address (localhost)
 PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
+
+mindata = 0
+middata = 0
+maxdata = 0
 
 while True:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -49,16 +53,27 @@ while True:
 
                 mydb.commit()
 
-                mycursor.execute("""SELECT * FROM limits;""")
-                limitdata = mycursor.fetchall()
+                if mindata == 0:
+                    mycursor.execute("""SELECT * FROM limits;""")
+                    limitdata = mycursor.fetchall()
 
                 print(limitdata)
 
-                mindata = limitdata[0][3]
-                maxdata = limitdata[1][3]
-                middata = limitdata[2][3]
+                mindata = int(limitdata[0][3])
+                maxdata = int(limitdata[1][3])
+                middata = int(limitdata[2][3])
 
                 for limit in limitdata:
                     print(limit)
+
+
+                if int(decibel) < mindata:
+                    b.lights[5].state(bri=254, hue=20000)
+                elif int(decibel) > mindata and int(decibel) < maxdata:
+                    b.lights[5].state(bri=254, hue=4000)
+                elif int(decibel) > maxdata:
+                    b.lights[5].state(bri=254, hue=1000)
+
+
 
                 conn.sendall(data)

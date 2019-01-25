@@ -16,7 +16,7 @@ GPIO.setup(pin, GPIO.IN)
 
 sensor = 1
 
-b = Bridge("192.168.1.30", 'e254339152304b714add57d14a8fdbb')
+b = Bridge("192.168.42.5", 'e254339152304b714add57d14a8fdbb')
 groups = b.groups # as groups are handy, I will contorll all
 
 soundnumber = 1
@@ -36,7 +36,7 @@ soundnumber = 1
 	#time.sleep(10)
 
 
-HOST = '192.168.0.23'  # The server's hostname or IP address
+HOST = '192.168.42.14'  # The server's hostname or IP address
 PORT = 65432        # The port used by the server
 
 
@@ -56,8 +56,8 @@ commandline = int(sys.argv[1])
 print(commandline)
 #print("AOUT:%1.3f  " %(value))
 value = 20 * (numpy.log(commandline) / numpy.log(10))
-print(value)
-db = {'sensor' : sensor, 'value' : value}
+print(int(value))
+db = {'sensor' : sensor, 'value' : int(value)}
 dbjson = json.dumps(db).encode()
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 	s.connect((HOST, PORT))
