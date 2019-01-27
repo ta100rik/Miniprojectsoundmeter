@@ -66,12 +66,24 @@ while True:
                 for limit in limitdata:
                     print(limit)
 
+                mycursor.execute("""SELECT decibel FROM sensor_log WHERE Sensor_auto_id = 1 ORDER BY log_id DESC LIMIT 0, 1;""")
+                sensor1 = mycursor.fetchall()
 
-                if int(decibel) < mindata:
+                #print(sensor1)
+
+                mycursor.execute("""SELECT decibel FROM sensor_log WHERE Sensor_auto_id = 2 ORDER BY log_id DESC LIMIT 0, 1;""")
+                sensor2 = mycursor.fetchall()
+
+                #print(sensor2)
+
+                avaragedb = sensor1[0] + sensor2[0] / 2
+
+
+                if int(avaragedb) < mindata:
                     b.lights[5].state(bri=254, hue=20000)
-                elif int(decibel) > mindata and int(decibel) < maxdata:
+                elif int(avaragedb) > mindata and int(avaragedb) < maxdata:
                     b.lights[5].state(bri=254, hue=4000)
-                elif int(decibel) > maxdata:
+                elif int(avaragedb) > maxdata:
                     b.lights[5].state(bri=254, hue=1000)
 
 
