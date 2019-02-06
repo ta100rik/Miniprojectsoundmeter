@@ -20,8 +20,7 @@ not yet implemented
 
 ## Authors
 
-* **Zyad Osseyran** - [Ta100rik](https://github.com/ta100rik)
-* **Dylan Geels**
+* **Zyad** - [Ta100rik](https://github.com/ta100rik)
 
 See also the list of [contributors](https://github.com/GeelsD/MiniprojectSoundmeter/contributors) who participated in this project.
 
